@@ -179,6 +179,12 @@ export const guest = (() => {
             bgVid.muted = false;
             bgVid.play().catch(() => {});
         }
+
+        const storyVid = document.querySelector('#video-love-story video');
+        if (storyVid) {
+            storyVid.muted = false;
+        }
+
         util.changeOpacity(document.getElementById('welcome'), false).then((el) => el.remove());
     };
 
@@ -217,6 +223,11 @@ export const guest = (() => {
     const showStory = (div) => {
         if (navigator.vibrate) {
             navigator.vibrate(500);
+        }
+
+        const storyVid = document.querySelector('#video-love-story video');
+        if (storyVid) {
+            storyVid.muted = false;
         }
 
         confetti.tapTapAnimation(div, 100);
