@@ -261,7 +261,7 @@ export const guest = (() => {
         const url = new URL('https://calendar.google.com/calendar/render');
         const data = new URLSearchParams({
             action: 'TEMPLATE',
-            text: 'The Wedding of Sujit and Akanksha',
+            text: 'The Wedding of Sujit and Aakanksha',
             dates: `${formatDate('2026-03-12 12:30')}/${formatDate('2026-03-12 13:30')}`,
             details: 'With all due respect, we invite you to attend our wedding ceremony. Thank you for your warm wishes and for being a part of our special day.',
             location: 'Shagun Gardens, Belagavi, Karnataka 590008',
