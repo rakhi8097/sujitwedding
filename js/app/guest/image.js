@@ -99,8 +99,9 @@ export const image = (() => {
             await c.run(urlCache, progress.getAbort());
         };
 
-        await runGroup((el) => el.hasAttribute('fetchpriority'));
+        await runGroup((el) => el.getAttribute('fetchpriority') === 'high');
         await runGroup((el) => !el.hasAttribute('fetchpriority'));
+        await runGroup((el) => el.getAttribute('fetchpriority') === 'low');
     };
 
     /**

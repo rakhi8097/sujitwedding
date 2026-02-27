@@ -111,11 +111,27 @@ export const video = (() => {
             const isHeavy = src.includes('Sujit%20Pre%20Wed.mp4') || src.includes('Sujit Pre Wed.mp4');
 
             if (isExternal || isHeavy) {
-                vid.src = util.escapeHtml(src);
-                vid.autoplay = true;
-                vid.playsInline = true;
+                const startLoad = () => {
+                    vid.src = util.escapeHtml(src);
+                    vid.autoplay = true;
+                    vid.playsInline = true;
+                };
+
+                const deferredObserver = new IntersectionObserver((es) => {
+                    es.forEach((e) => {
+                        if (e.isIntersecting) {
+                            if (!vid.src) {
+                                startLoad();
+                            }
+                            vid.play();
+                        } else {
+                            vid.pause();
+                        }
+                    });
+                });
+
                 wrap.appendChild(vid);
-                observer.observe(vid);
+                deferredObserver.observe(vid);
                 wrap.querySelector('[data-video-loading]')?.remove();
                 return Promise.resolve();
             }
