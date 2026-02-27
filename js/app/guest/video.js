@@ -44,7 +44,7 @@ export const video = (() => {
              */
             const prepareVideo = (b) => {
                 vid.preload = 'auto';
-                if (wrap.id === 'video-love-story' || wrap.id === 'video-love-stroy') {
+                if (wrap.id === 'video-love-story') {
                     vid.controls = true;
                     vid.disableRemotePlayback = true;
                     vid.disablePictureInPicture = true;
