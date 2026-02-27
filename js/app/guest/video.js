@@ -44,7 +44,7 @@ export const video = (() => {
              */
             const prepareVideo = (b) => {
                 vid.preload = 'auto';
-                if (wrap.id === 'video-love-stroy') {
+                if (wrap.id === 'video-love-story' || wrap.id === 'video-love-stroy') {
                     vid.controls = true;
                     vid.disableRemotePlayback = true;
                     vid.disablePictureInPicture = true;
@@ -114,7 +114,9 @@ export const video = (() => {
                 const startLoad = () => {
                     vid.src = util.escapeHtml(src);
                     vid.autoplay = true;
-                    vid.playsInline = true;
+                    vid.setAttribute('playsinline', '');
+                    vid.muted = true;
+                    vid.load();
                 };
 
                 const deferredObserver = new IntersectionObserver((es) => {
@@ -123,7 +125,10 @@ export const video = (() => {
                             if (!vid.src) {
                                 startLoad();
                             }
-                            vid.play();
+                            vid.play().catch((err) => {
+                                console.warn('Autoplay failed:', err);
+                                vid.controls = true;
+                            });
                         } else {
                             vid.pause();
                         }
